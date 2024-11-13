@@ -35,3 +35,8 @@ K-means Clustering: Clustered customers and saved cluster info to k.txt.
 6. Bash Script (final.sh)
 
 Script Actions: Managed container, copied output files to /result, and transferred results to local machine (C:\bd-a1\service-result).
+
+Bonus Task:
+
+GitHub Link: https://github.com/TheKnower0x0/Assignment-1-CSCI461.git
+Docker Hub: 
