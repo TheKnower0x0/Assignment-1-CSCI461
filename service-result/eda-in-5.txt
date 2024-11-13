@@ -1,0 +1,1 @@
+Customer Count by Income Level: {'Medium': 65, 'Low': 52, 'Very High': 50, 'High': 39}
