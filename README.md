@@ -1,42 +1,44 @@
-Steps Performed
+Project Structure
+Load Data (load.py): Reads Mall_Customers.csv, ensuring data loads successfully.
 
-1. Dockerfile Setup
+Data Preprocessing (dpre.py):
 
-Base Image: Used ubuntu:latest.
+Cleans data by dropping duplicates and filling missing values with the median for columns like Age, Annual Income (k$), and Spending Score (1-100).
+Encodes categorical values, scales features, reduces dimensions with PCA, and categorizes income into levels.
+Exploratory Data Analysis (EDA) (eda.py): Provides insights:
 
-Environment: Installed Python 3 and dependencies (pandas, numpy, seaborn, matplotlib, scikit-learn, scipy) in a virtual environment.
+Average age, gender distribution, spending score range, average income, and customer count by income level.
+Modeling (model.py): Clusters data into three groups using K-means, saving cluster counts.
 
-Files: Copied dataset (Mall_Customers.csv) and Python scripts (load.py, dpre.py, eda.py, vis.py, model.py) to the container.
+Visualization (vis.py): Creates a bar chart of the average spending score by income level.
 
-2. Data Preprocessing (dpre.py)
+Docker Setup
+Build Docker Image:
 
-Data Cleaning & Transformation: Filled missing values, encoded Genre, scaled features, and performed PCA.
+docker build -t assignment1 .
+Run Docker Container:
 
-Income Level Binning: Added Income_Level by binning Annual Income (k$).
+docker run -it assignment1
 
-Output: Saved as res_dpre.csv.
+Execute Pipelines:
 
-3. Exploratory Data Analysis (eda.py)
+Load: python3 /home/doc-bd-a1/load.py /home/doc-bd-a1/Mall_Customers.csv
 
-Insights: Generated insights like average age, gender distribution, and spending score.
+Preprocess: python3 /home/doc-bd-a1/dpre.py /home/doc-bd-a1/Mall_Customers.csv
 
-Output: Saved insights to .txt files.
+EDA: python3 /home/doc-bd-a1/eda.py /home/doc-bd-a1/Mall_Customers.csv
 
-4. Visualization (vis.py)
+Model: python3 /home/doc-bd-a1/model.py /home/doc-bd-a1/Mall_Customers.csv
 
-Chart: Created a bar chart of average spending score by income level.
+Visualization: python3 /home/doc-bd-a1/vis.py /home/doc-bd-a1/Mall_Customers.csv
 
-Output: Saved as vis.png.
 
-5. Clustering (model.py)
+Extract Results:
 
-K-means Clustering: Clustered customers and saved cluster info to k.txt.
-
-6. Bash Script (final.sh)
-
-Script Actions: Managed container, copied output files to /result, and transferred results to local machine (C:\bd-a1\service-result).
+Run final.sh to transfer results from the container to C:\bd-a1\service-result\ on your local machine.
 
 Bonus Task:
 
 GitHub Link: https://github.com/TheKnower0x0/Assignment-1-CSCI461.git
-Docker Hub Link: 
+
+Docker Hub Link: https://hub.docker.com/r/xahmedmomenx/bigdata_assg1
